@@ -11,7 +11,7 @@ const port = process.env.PORT || 3001
 
 
 const server = app.listen(port, ()=>{
-    console.log('server runs on port ', port);
+    console.log('Servidor funcionando en puerto: ', port);
 })
 
 const io = socketio(server, {
@@ -22,15 +22,18 @@ const io = socketio(server, {
   })
 let count = 0
 io.on('connection', (socket)=>{
-    console.log('Conectado a frontend');
 
+    console.log('Conectado a frontend');
+    //Enviar senial de cantidad
     socket.emit('count', count)
 
+    //Recibir senial de incremento de cantidad
     socket.on('increase', ()=>{
         count++
         io.emit('count', count)
     })
 
+    //Recibir senial de desconectarse
     socket.on('disconnect', ()=>{
         console.log('Usuario desconectado');
     })
