@@ -17,14 +17,11 @@ function App() {
   const click = ()=>{
     server.emit('increase')
   }
-  const disconnect = ()=>{
-    server.emit('disconnect')
-  }
+  
   return (
     <div>
       <h1> Chat </h1>
       <button onClick={click}> Click </button>
-      <button onClick={disconnect}> disconnect </button>
       <h1>{countFront}</h1>
 
     </div>
